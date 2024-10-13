@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Create the add task function
     function addTask() {
+    const taskInput = document.getElementById('task-input');
 // Retrieve and trim the value from the task input field
     const taskText  = taskInput.value.trim();
       
@@ -38,29 +39,52 @@ document.addEventListener('DOMContentLoaded', function() {
 // Remove the parent li element (task) from taskList
     taskList.removeChild(this.parentNode);
   }
-  
-  
+// Append remove task button to task
+    task.appendChild(removeTaskBtn);
 
+// Append task to task list
+    taskList.appendChild(task);
 
-              // Append remove task button to task
-      task.appendChild(removeTaskBtn);
-
-      // Append task to task list
-      taskList.appendChild(task);
-
-      // Clear task input
-      taskInput.value = '';
+// Clear task input
+    taskInput.value = '';
     }
-  }
+ }
 
-  // Add event listener to taskInput for keypress event
-taskInput.addEventListener('keypress', function(event) {
-    // Check if Enter key was pressed
+// Add event listener to taskInput for keypress event
+    taskInput.addEventListener('keypress', function(event) {
+// Check if Enter key was pressed
     if (event.key === 'Enter') {
-      // Call addTask function
+// Call addTask function
       addTask();
     }
   });
-  
+
+// Function to initialize and load task list
+    function initTaskList() {
+    // Initialize task list
+    const storedTasks = localStorage.getItem('tasks');
+    const taskList = document.getElementById('task-list');
+    }
+// Function to load tasks from Local Storage
+    function loadTasks() {
+    const taskList = document.getElementById('task-list');
+    const storedTasks = localStorage.getItem('tasks');
+    }   
+    if (storedTasks) {
+        const tasks = JSON.parse(storedTasks);
+       
+
+
+
+
+
+// Function to save tasks to Local Storage
+    function saveTasks() {
+    const taskList = document.getElementById('task-list');
+    const tasks = [];
+
+
+
+}); 
   
       
