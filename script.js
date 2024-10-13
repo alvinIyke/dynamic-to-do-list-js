@@ -33,7 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const removeTaskBtn = document.createElement('remove-btn');
     removeTaskBtn.classList.add('remove-task');
     removeTaskBtn.textContent = "Remove";
-            
+    removeTaskBtn.addEventListener('click', function() {
+        taskElement.remove();
+        saveTasks();
+    });  
 // Assign onclick event to remove button
     removeTaskBtn.onclick = function() {
 // Remove the parent li element (task) from taskList
@@ -73,18 +76,26 @@ document.addEventListener('DOMContentLoaded', function() {
     if (storedTasks) {
         const tasks = JSON.parse(storedTasks);
        
+ // Save tasks to Local Storage
+ saveTasks();
 
-
-
+ // Clear task input
+ taskInput.value = '';
+}
 
 
 // Function to save tasks to Local Storage
-    function saveTasks() {
-    const taskList = document.getElementById('task-list');
-    const tasks = [];
+function saveTasks() {
+const taskList = document.getElementById('task-list');
+const tasks = [];
 
+// Iterate through task list and store task text
+for (const task of taskList.children) {
+ tasks.push(task.textContent);
+}
 
-
-}); 
+// Save tasks to Local Storage
+localStorage.setItem('tasks', JSON.stringify(tasks));
+}}); 
   
       
